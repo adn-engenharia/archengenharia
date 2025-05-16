@@ -22,6 +22,16 @@
       justify-content: space-between;
       align-items: center;
     }
+    header div.logo-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    header div.logo-title img {
+      height: 40px;
+      width: auto;
+      max-width: 100%;
+    }
     header h1 {
       color: #1e40af;
       font-size: 1.875rem;
@@ -57,7 +67,6 @@
     }
     img {
       max-width: 100%;
-      border-radius: 1rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
     .valores-grid {
@@ -87,6 +96,9 @@
       border: 1px solid #cbd5e1;
       border-radius: 0.75rem;
       margin-bottom: 1rem;
+      font-family: inherit;
+      font-size: 1rem;
+      resize: vertical;
     }
     .contato button {
       width: 100%;
@@ -97,6 +109,7 @@
       border: none;
       border-radius: 0.75rem;
       cursor: pointer;
+      font-weight: 600;
     }
     .contato button:hover {
       background: #1e3a8a;
@@ -113,8 +126,8 @@
 </head>
 <body>
   <header>
-    <div style="display: flex; align-items: center; gap: 0.75rem;">
-      <img src="logo.png" alt="Logo Arch Engenharia" style="width: 40px; height: 40px; object-fit: contain;">
+    <div class="logo-title">
+      <img src="logo.png" alt="Logo Arch Engenharia" />
       <h1>Arch Engenharia</h1>
     </div>
     <nav>
@@ -131,9 +144,9 @@
 
   <section>
     <h3 style="text-align:center; font-size: 2rem; font-weight: bold;">Exemplo de Planta Baixa</h3>
-    <img src="exemplo-planta.jpg" alt="Planta baixa exemplo" style="display: block; margin: 2rem auto;">
+    <img src="exemplo-planta.jpg" alt="Planta baixa exemplo" style="display: block; margin: 2rem auto;" />
     <h4 style="text-align:center; font-size: 1.5rem; font-weight: 600; margin-top: 2rem;">Ilustração Humanizada</h4>
-    <img src="planta-ilustrada.jpg" alt="Desenho da planta ilustrada" style="display: block; margin: 2rem auto;">
+    <img src="planta-ilustrada.jpg" alt="Desenho da planta ilustrada" style="display: block; margin: 2rem auto;" />
   </section>
 
   <section id="valores">
@@ -170,10 +183,10 @@
   <section id="contato" class="contato" style="background: linear-gradient(to top right, #dbeafe, #e0f2fe);">
     <h3 style="text-align:center; font-size: 2rem; font-weight: bold;">Fale Comigo</h3>
     <div style="max-width: 500px; margin: auto;">
-      <input type="text" placeholder="Seu nome" />
-      <input type="email" placeholder="Seu e-mail" />
-      <textarea rows="4" placeholder="Mensagem"></textarea>
-      <button>Enviar</button>
+      <input type="text" id="nome" placeholder="Seu nome" />
+      <input type="email" id="email" placeholder="Seu e-mail" />
+      <textarea rows="4" id="mensagem" placeholder="Mensagem"></textarea>
+      <button id="enviarBtn">Enviar</button>
       <div style="text-align: center; font-size: 0.875rem; color: #475569; margin-top: 1rem;">
         <div>📞 (31) 99999-9999</div>
         <div>📧 euvitorx@icloud.com</div>
@@ -187,29 +200,22 @@
   </footer>
 
   <script>
-    const btnEnviar = document.querySelector(".contato button");
+    const enviarBtn = document.getElementById('enviarBtn');
+    enviarBtn.addEventListener('click', () => {
+      const nome = document.getElementById('nome').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const mensagem = document.getElementById('mensagem').value.trim();
 
-    btnEnviar.addEventListener("click", () => {
-      const nome = document.querySelector('.contato input[type="text"]').value.trim();
-      const email = document.querySelector('.contato input[type="email"]').value.trim();
-      const mensagem = document.querySelector('.contato textarea').value.trim();
-
-      if (!nome || !email || !mensagem) {
-        alert("Por favor, preencha todos os campos.");
+      if(!nome || !email || !mensagem) {
+        alert('Por favor, preencha todos os campos.');
         return;
       }
 
-      // Número do WhatsApp no formato internacional (Brasil +55)
-      const telefone = "5531999999999";
+      const numero = '5531999999999'; // substitua pelo seu número com DDI + DDD, sem espaços ou símbolos
+      const texto = `Olá, meu nome é ${nome}. Meu e-mail é ${email}. Gostaria de falar sobre: ${mensagem}`;
+      const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
 
-      // Monta a mensagem
-      const texto = `Olá, meu nome é ${nome}.\nEmail: ${email}\nMensagem: ${mensagem}`;
-
-      // Codifica para URL
-      const url = `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(texto)}`;
-
-      // Abre o WhatsApp em nova aba
-      window.open(url, "_blank");
+      window.open(url, '_blank');
     });
   </script>
 </body>

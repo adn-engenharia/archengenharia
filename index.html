@@ -26,6 +26,7 @@
       color: #1e40af;
       font-size: 1.875rem;
       font-weight: 800;
+      margin: 0;
     }
     nav a {
       margin-left: 1rem;
@@ -112,7 +113,10 @@
 </head>
 <body>
   <header>
-    <h1>Arch Engenharia</h1>
+    <div style="display: flex; align-items: center; gap: 0.75rem;">
+      <img src="logo.png" alt="Logo Arch Engenharia" style="width: 40px; height: 40px; object-fit: contain;">
+      <h1>Arch Engenharia</h1>
+    </div>
     <nav>
       <a href="#valores">Valores</a>
       <a href="#sobre">Sobre</a>
@@ -181,5 +185,32 @@
   <footer>
     © 2025 Arch Engenharia. Todos os direitos reservados.
   </footer>
+
+  <script>
+    const btnEnviar = document.querySelector(".contato button");
+
+    btnEnviar.addEventListener("click", () => {
+      const nome = document.querySelector('.contato input[type="text"]').value.trim();
+      const email = document.querySelector('.contato input[type="email"]').value.trim();
+      const mensagem = document.querySelector('.contato textarea').value.trim();
+
+      if (!nome || !email || !mensagem) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      // Número do WhatsApp no formato internacional (Brasil +55)
+      const telefone = "5531999999999";
+
+      // Monta a mensagem
+      const texto = `Olá, meu nome é ${nome}.\nEmail: ${email}\nMensagem: ${mensagem}`;
+
+      // Codifica para URL
+      const url = `https://api.whatsapp.com/send?phone=${telefone}&text=${encodeURIComponent(texto)}`;
+
+      // Abre o WhatsApp em nova aba
+      window.open(url, "_blank");
+    });
+  </script>
 </body>
 </html>

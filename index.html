@@ -1,125 +1,185 @@
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, Home } from "lucide-react";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import Image from "next/image";
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Arch Engenharia</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: linear-gradient(to bottom, white, #ebf8ff);
+      color: #1a202c;
+    }
+    header {
+      background: white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      color: #1e40af;
+      font-size: 1.875rem;
+      font-weight: 800;
+    }
+    nav a {
+      margin-left: 1rem;
+      font-weight: 600;
+      color: #1a202c;
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: #2563eb;
+    }
+    section {
+      padding: 4rem 2rem;
+    }
+    .hero {
+      background: #2563eb;
+      color: white;
+      text-align: center;
+    }
+    .hero h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: #dbeafe;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .valores-grid {
+      display: grid;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    @media(min-width: 768px) {
+      .valores-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .valor-box {
+      background: #dbeafe;
+      padding: 1.5rem;
+      border-radius: 1rem;
+    }
+    .valor-box h4 {
+      color: #1e40af;
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .contato input, .contato textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+    }
+    .contato button {
+      width: 100%;
+      background: #1e40af;
+      color: white;
+      font-size: 1rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+    }
+    .contato button:hover {
+      background: #1e3a8a;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.875rem;
+      padding: 2rem;
+      background: white;
+      color: #64748b;
+      border-top: 1px solid #e2e8f0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Arch Engenharia</h1>
+    <nav>
+      <a href="#valores">Valores</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </header>
 
-export default function HomePage() {
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [mensagem, setMensagem] = useState("");
+  <section class="hero">
+    <h2>Transformamos ideias em projetos incríveis</h2>
+    <p>Plantas baixas modernas, funcionais e pensadas para você.</p>
+  </section>
 
-  const handleEnviar = () => {
-    const texto = `Olá! Meu nome é ${nome}.
-Email: ${email}
-Mensagem: ${mensagem}`;
-    const url = `https://wa.me/5531996665955?text=${encodeURIComponent(texto)}`;
-    window.open(url, "_blank");
-  };
+  <section>
+    <h3 style="text-align:center; font-size: 2rem; font-weight: bold;">Exemplo de Planta Baixa</h3>
+    <img src="exemplo-planta.jpg" alt="Planta baixa exemplo" style="display: block; margin: 2rem auto;">
+    <h4 style="text-align:center; font-size: 1.5rem; font-weight: 600; margin-top: 2rem;">Ilustração Humanizada</h4>
+    <img src="planta-ilustrada.jpg" alt="Desenho da planta ilustrada" style="display: block; margin: 2rem auto;">
+  </section>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-blue-50 text-gray-800">
-      {/* Navbar */}
-      <header className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-        <div className="flex items-center space-x-3">
-          <img src="/logo.png" alt="Logo Arch Engenharia" className="h-10 w-10 object-contain" />
-          <h1 className="text-3xl font-extrabold text-blue-700 tracking-tight">Arch Engenharia</h1>
-        </div>
-        <nav className="space-x-6 text-sm font-semibold">
-          <a href="#valores" className="hover:text-blue-600 transition">Valores</a>
-          <a href="#sobre" className="hover:text-blue-600 transition">Sobre</a>
-          <a href="#contato" className="hover:text-blue-600 transition">Contato</a>
-        </nav>
-      </header>
-
-      {/* Hero Section */}
-      <section className="bg-blue-600 py-24 px-6 text-white text-center">
-        <motion.h2 
-          className="text-5xl font-bold mb-4"
-          initial={{ opacity: 0, y: -20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }}
-        >
-          Transformamos ideias em projetos incríveis
-        </motion.h2>
-        <motion.p 
-          className="max-w-xl mx-auto text-lg text-blue-100"
-          initial={{ opacity: 0 }} 
-          animate={{ opacity: 1 }} 
-          transition={{ delay: 0.3 }}
-        >
-          Plantas baixas modernas, funcionais e pensadas para você.
-        </motion.p>
-      </section>
-
-      {/* Imagem da Planta Baixa */}
-      <section className="py-16 px-6 text-center">
-        <h3 className="text-4xl font-bold mb-6">Exemplo de Planta Baixa</h3>
-        <img 
-          src="/projects/exemplo-planta.jpg" 
-          alt="Planta baixa exemplo" 
-          className="mx-auto rounded-2xl shadow-xl w-full max-w-3xl mb-12"
-        />
-        <h4 className="text-2xl font-semibold mb-4">Ilustração Humanizada</h4>
-        <img 
-          src="/projects/planta-ilustrada.jpg" 
-          alt="Desenho da planta ilustrada" 
-          className="mx-auto rounded-2xl shadow-xl w-full max-w-3xl"
-        />
-      </section>
-
-      {/* Valores */}
-      <section id="valores" className="bg-white py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-10">Nossos Valores</h3>
-          <div className="grid md:grid-cols-3 gap-8 text-left text-lg text-gray-700">
-            <div className="bg-blue-100 p-6 rounded-xl shadow-sm">
-              <h4 className="font-semibold text-xl mb-2 text-blue-700">Planta Básica</h4>
-              <p>A partir de R$ 100 — Ideal para clientes que desejam apenas a disposição dos ambientes de forma simples.</p>
-            </div>
-            <div className="bg-blue-100 p-6 rounded-xl shadow-sm">
-              <h4 className="font-semibold text-xl mb-2 text-blue-700">Planta com Layout</h4>
-              <p>A partir de R$ 150 — Inclui mobiliário sugerido, medidas e organização prática do espaço.</p>
-            </div>
-            <div className="bg-blue-100 p-6 rounded-xl shadow-sm">
-              <h4 className="font-semibold text-xl mb-2 text-blue-700">Planta Detalhada</h4>
-              <p>A partir de R$ 200 — Inclui planta cotada, humanizada e com sugestões personalizadas.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Sobre */}
-      <section id="sobre" className="bg-blue-50 py-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <h3 className="text-4xl font-bold mb-6">Quem Somos</h3>
-          <p className="text-gray-700 text-lg">
-            Sou Vitor Mendes, estudante de Engenharia Mecânica no CEFET-MG e criador da Arch Engenharia. Desenvolvo projetos residenciais e comerciais com foco em eficiência, conforto térmico e soluções acessíveis. Nossa missão é entregar projetos que unam funcionalidade, estética e viabilidade.
-          </p>
-        </div>
-      </section>
-
-      {/* Contato */}
-      <section id="contato" className="py-20 px-6 bg-gradient-to-tr from-blue-100 to-blue-200">
-        <h3 className="text-4xl font-bold mb-8 text-center">Fale Comigo</h3>
-        <div className="max-w-xl mx-auto space-y-4 bg-white p-8 rounded-2xl shadow-xl">
-          <Input placeholder="Seu nome" className="rounded-xl" value={nome} onChange={(e) => setNome(e.target.value)} />
-          <Input placeholder="Seu e-mail" type="email" className="rounded-xl" value={email} onChange={(e) => setEmail(e.target.value)} />
-          <Textarea placeholder="Mensagem" className="rounded-xl" value={mensagem} onChange={(e) => setMensagem(e.target.value)} />
-          <button onClick={handleEnviar} className="w-full bg-blue-700 hover:bg-blue-800 text-white text-lg py-2 rounded-xl">Enviar</button>
-          <div className="text-center text-sm mt-6 text-gray-600">
-            <div className="flex items-center justify-center gap-2"><Phone size={16} /> (31) 99666-5955</div>
-            <div className="flex items-center justify-center gap-2"><Mail size={16} /> euvitorx@icloud.com</div>
-            <div className="flex items-center justify-center gap-2"><Home size={16} /> Belo Horizonte - MG</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="bg-white text-center text-sm p-6 text-gray-500 border-t">
-        © 2025 Arch Engenharia. Todos os direitos reservados.
-      </footer>
+  <section id="valores">
+    <div style="text-align:center;">
+      <h3 style="font-size: 2rem; font-weight: bold;">Nossos Valores</h3>
     </div>
-  );
-}
+    <div class="valores-grid">
+      <div class="valor-box">
+        <h4>Planta Básica</h4>
+        <p>A partir de R$ 100 — Ideal para clientes que desejam apenas a disposição dos ambientes de forma simples.</p>
+      </div>
+      <div class="valor-box">
+        <h4>Planta com Layout</h4>
+        <p>A partir de R$ 150 — Inclui mobiliário sugerido, medidas e organização prática do espaço.</p>
+      </div>
+      <div class="valor-box">
+        <h4>Planta Detalhada</h4>
+        <p>A partir de R$ 200 — Inclui planta cotada, humanizada e com sugestões personalizadas.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="sobre" style="background: #f1f5f9;">
+    <div style="text-align:center; max-width: 700px; margin: auto;">
+      <h3 style="font-size: 2rem; font-weight: bold;">Quem Somos</h3>
+      <p>
+        Sou Vitor Mendes, estudante de Engenharia Mecânica no CEFET-MG e criador da Arch Engenharia. 
+        Desenvolvo projetos residenciais e comerciais com foco em eficiência, conforto térmico e soluções acessíveis. 
+        Nossa missão é entregar projetos que unam funcionalidade, estética e viabilidade.
+      </p>
+    </div>
+  </section>
+
+  <section id="contato" class="contato" style="background: linear-gradient(to top right, #dbeafe, #e0f2fe);">
+    <h3 style="text-align:center; font-size: 2rem; font-weight: bold;">Fale Comigo</h3>
+    <div style="max-width: 500px; margin: auto;">
+      <input type="text" placeholder="Seu nome" />
+      <input type="email" placeholder="Seu e-mail" />
+      <textarea rows="4" placeholder="Mensagem"></textarea>
+      <button>Enviar</button>
+      <div style="text-align: center; font-size: 0.875rem; color: #475569; margin-top: 1rem;">
+        <div>📞 (31) 99999-9999</div>
+        <div>📧 euvitorx@icloud.com</div>
+        <div>🏠 Belo Horizonte - MG</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Arch Engenharia. Todos os direitos reservados.
+  </footer>
+</body>
+</html>
